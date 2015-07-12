@@ -7,7 +7,7 @@ class DinoParser
   end
 
   def add(dino)
-    @dinosaurs << dino
+    @dinosaurs << Dinosaur.new(standardize(dino))
   end
 
   def find_bipeds
@@ -76,6 +76,8 @@ class DinoParser
       keys[:diet] = "Carnivore"
     when ""
       keys[:diet] = nil
+    when "No"
+      keys[:diet] = "Herbivore"
     else
       keys[:diet] = keys[:diet]
     end

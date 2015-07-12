@@ -1,5 +1,5 @@
 class Dinosaur
-  attr_reader :name, :period, :continent, :diet, :weight_in_lbs, :walking, :description
+  attr_accessor :name, :period, :continent, :diet, :weight_in_lbs, :walking, :description
 
   def initialize(args={})
     @name = args[:name]
