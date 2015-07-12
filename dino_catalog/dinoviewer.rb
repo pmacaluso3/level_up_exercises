@@ -38,7 +38,7 @@ def view_add_dino
   puts "Write up a little Description if you'd like..."
   dino[:description] = gets.chomp
   puts "Here's your Dinosaur:"
-  dino.each{ |k, v| puts "#{k}: #{v}" }
+  dino.each { |k, v| puts "#{k}: #{v}" }
   puts "Would you like to store it in your DinoDex? (Y/n)"
   response = gets.downcase.chomp
   controller_add_dino(dino, response)
@@ -65,7 +65,7 @@ def view_search_dinos
 end
 
 def view_show_dinos(dinosaurs)
-  dinosaurs.each{ |dino| puts dino.to_s }
+  dinosaurs.each { |dino| puts dino.to_s }
   view_home
 end
 

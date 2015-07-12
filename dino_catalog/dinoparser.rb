@@ -11,22 +11,22 @@ class DinoParser
   end
 
   def find_bipeds
-    @dinosaurs.select{ |dino| dino.is_biped? }
+    @dinosaurs.select(&:is_biped?)
   end
 
   def find_carnivores
-    @dinosaurs.select{ |dino| dino.is_carnivore? }
+    @dinosaurs.select(&:is_carnivore?)
   end
 
   def find_by_period(era)
-    @dinosaurs.select{ |dino| dino.period.include? era }
+    @dinosaurs.select { |dino| dino.period.include? era }
   end
 
   def find_by_size!(size)
     if size.downcase == "big"
-      @dinosaurs.select{ |dino| dino.weight_in_lbs != nil && dino.weight_in_lbs > 2000 }
+      @dinosaurs.select { |dino| !dino.weight_in_lbs.nil? && dino.weight_in_lbs > 2000 }
     elsif size.downcase == "small"
-      @dinosaurs.select{ |dino| dino.weight_in_lbs != nil && dino.weight_in_lbs <= 2000 }
+      @dinosaurs.select { |dino| !dino.weight_in_lbs.nil? && dino.weight_in_lbs <= 2000 }
     else
       raise "That's not an acceptable input!"
     end
@@ -48,19 +48,20 @@ class DinoParser
   end
 
   def to_json
-    @dinosaurs.each { |dino| dino.to_json }
+    @dinosaurs.each(&:to_json)
   end
 
   private
-  def standardize(args={})
+  
+  def standardize(args = {})
     standard_keys = {
-      :name => args[:name] || args[:genus],
-      :period => args[:period],
-      :continent => args[:continent],
-      :diet => args[:diet] || args[:carnivore],
-      :weight_in_lbs => args[:weight_in_lbs] || args[:weight],
-      :walking => args[:walking],
-      :description => args[:description]
+      name: args[:name] || args[:genus],
+      period: args[:period],
+      continent: args[:continent],
+      diet: args[:diet] || args[:carnivore],
+      weight_in_lbs: args[:weight_in_lbs] || args[:weight],
+      walking: args[:walking],
+      description: args[:description],
     }
 
     clean_diet(standard_keys)
@@ -70,38 +71,38 @@ class DinoParser
     standard_keys
   end
 
-  def clean_diet(keys={})
+  def clean_diet(keys = {})
     case keys[:diet]
-    when "Yes"
-      keys[:diet] = "Carnivore"
-    when ""
-      keys[:diet] = nil
-    when "No"
-      keys[:diet] = "Herbivore"
-    else
-      keys[:diet] = keys[:diet]
+      when "Yes"
+        keys[:diet] = "Carnivore"
+      when ""
+        keys[:diet] = nil
+      when "No"
+        keys[:diet] = "Herbivore"
+      else
+        keys[:diet] = keys[:diet]
     end
   end
 
-  def clean_weight(keys={})
+  def clean_weight(keys = {})
     case keys[:weight_in_lbs]
-    when ""
-      keys[:weight_in_lbs] = nil
-    when nil
-      keys[:weight_in_lbs] = nil
-    when 0
-      keys[:weight_in_lbs] = nil
-    else
-      keys[:weight_in_lbs] = keys[:weight_in_lbs].to_i
+      when ""
+        keys[:weight_in_lbs] = nil
+      when nil
+        keys[:weight_in_lbs] = nil
+      when 0
+        keys[:weight_in_lbs] = nil
+      else
+        keys[:weight_in_lbs] = keys[:weight_in_lbs].to_i
     end
   end
 
-  def clean_description(keys={})
+  def clean_description(keys = {})
     case keys[:description]
-    when ""
-      keys[:description] = nil
-    else
-      keys[:description] = keys[:description]
+      when ""
+        keys[:description] = nil
+      else
+        keys[:description] = keys[:description]
     end
   end
 

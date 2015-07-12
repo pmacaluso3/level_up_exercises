@@ -10,12 +10,12 @@ def controller_home(input)
       view_search_dinos
     when "exit"
       exit
-  else
-    begin
-      raise "That's not a valid option!"
-    rescue
-    end
-    view_home
+    else
+      begin
+        raise "That's not a valid option!"
+      rescue
+      end
+      view_home
   end
 end
 
@@ -52,19 +52,19 @@ def controller_search_dinos(input)
       view_show_dinos(@dinodex.find_bipeds)
     when "periods"
       available_periods = []
-      @dinodex.dinosaurs.each{ |dino| available_periods << dino.period }
-      avaialble_periods = available_periods.uniq!
+      @dinodex.dinosaurs.each { |dino| available_periods << dino.period }
+      available_periods.uniq!
       view_period_picker(available_periods)
     when "size"
-      sizes = ["small", "big"]
+      sizes = %w[small big]
       view_size_picker(sizes)
     when "home"
       view_home
-  else
-    begin
-      raise "That's not a valid option!"
-    rescue
-    end
+    else
+      begin
+        raise "That's not a valid option!"
+      rescue
+      end
     view_search_dinos
   end
 end
