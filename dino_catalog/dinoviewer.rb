@@ -1,4 +1,6 @@
 def view_home
+  puts @messages if @messages
+  @messages = ""
   puts "Hello there Dinosaur Hunter! What would you like to do today??"
   puts "--- Type 'view' to see your Dinosaurs."
   puts "--- Type 'add' to add a Dinosaur."
@@ -18,6 +20,8 @@ def view_home
 end
 
 def view_add_dino
+  puts @messages if @messages
+  @messages = ""
   dino = {}
   puts "What is the name of your Dinosaur"
   dino[:name] = gets.chomp
@@ -48,6 +52,8 @@ def view_save_files
 end
 
 def view_search_dinos
+  puts @messages if @messages
+  @messages = ""
   puts "How would you like to search for your Dinosaurs?"
   puts "--- Type 'carnivores' if you'd like to see all the Carnivore Dinosaurs"
   puts "--- Type 'bipedal' to find bipedal Dinosaurs"
@@ -64,9 +70,21 @@ def view_show_dinos(dinosaurs)
 end
 
 def view_period_picker(periods)
+  puts @messages if @messages
+  @messages = ""
   periods.each_with_index { |o, i| puts "#{i}: #{o}" }
   puts "Which Period would you like to find Dinosaurs for? (select number)"
   input = gets.chomp.to_i
   choice = periods[input]
   controller_dino_by_period(choice)
+end
+
+def view_size_picker(sizes)
+  sizes.each_with_index { |o, i| puts "#{i}: #{o}" }
+  puts
+  puts "Which size (select number)"
+  input = gets.chomp.to_i
+  choice = sizes[input]
+
+  controller_dino_by_size(choice)
 end
