@@ -1,6 +1,7 @@
 def view_home
   puts @messages if @messages
   @messages = ""
+  puts "Stacksize: #{caller.size}"
   puts "Hello there Dinosaur Hunter! What would you like to do today??"
   puts "--- Type 'view' to see your Dinosaurs."
   puts "--- Type 'add' to add a Dinosaur."
