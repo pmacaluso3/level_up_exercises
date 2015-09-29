@@ -1,45 +1,65 @@
 # Killer facts about triangles AWW YEAH
 class Triangle
-	attr_accessor :side1,:side2,:side3
+	attr_reader :side1, :side2, :side3
 
-	def initialize(side1,side2,side3)
-		@side1,@side2,@side3 = side1,side2,side3
-	end
-
-	def equilateral()
-		return side1 == side2 && side2 == side3
-	end
-
-	def isosceles()
-		return [side1,side2,side3].uniq.length == 2
-	end
-
-	def scalene()
-		unless ! (equilateral || isosceles)
-	    false
-	  else
-	    true
-	  end
+	def initialize(side1, side2, side3)
+		@side1, @side2, @side3 = side1, side2, side3
 	end
 
 	def recite_facts
-		puts 'This triangle is equilateral!' if equilateral
-		puts 'This triangle is isosceles! Also, that word is hard to type.' if isosceles 
-		puts 'This triangle is scalene and mathematically boring.' if scalene 
-
-		angles = self.calculate_angles(side1,side2,side3)
-		puts 'The angles of this triangle are ' + angles.join(',')
-
-		puts 'This triangle is also a right triangle!' if angles.include? 90
-		puts ''
+		puts side_length_sentence
+		puts angle_sentences
 	end
 
-	def calculate_angles(a,b,c)
-		angleA = radians_to_degrees(Math.acos((b**2 + c**2 - a**2) / (2.0 * b * c)))
-		angleB = radians_to_degrees(Math.acos((a**2 + c**2 - b**2) / (2.0 * a * c)))
-		angleC = radians_to_degrees(Math.acos((a**2 + b**2 - c**2) / (2.0 * a * b)))
+	def calculate_angles(a, b, c)
+		angleA = calculate_single_angle(b, c, a)
+		angleB = calculate_single_angle(c, a, b)
+		angleC = calculate_single_angle(a, b, c)
 
-		return [angleA, angleB, angleC]
+		[angleA, angleB, angleC]
+	end
+	
+	private
+	def equilateral
+		side1 == side2 && side2 == side3
+	end
+
+	def isosceles
+		[side1,side2,side3].uniq.length == 2
+	end
+
+	def scalene
+		(equilateral || isosceles) ? false : true
+	end
+
+	def side_length_sentence
+		if equilateral
+			'This triangle is equilateral!'
+		elsif isosceles
+			'This triangle is isosceles! Also, that word is hard to type.'
+		elsif scalene
+			'This triangle is scalene and mathematically boring.'
+		end
+	end
+
+	def angle_sentences
+		angles = calculate_angles(side1,side2,side3)
+
+		if angles.include? 90
+			right = "This triangle is also a right triangle!\n" 
+		else
+			right = "\n"
+		end
+
+		"The angles of this triangle are #{angles.join(',')}\n#{right}"
+	end
+
+	# solving for C in a**2 + b**2 - 2abcosC = c**2
+	def calculate_single_angle(leg_1, leg_2, opposite_from_angle_of_interest)
+		numerator = (leg_1**2 + leg_2**2 - opposite_from_angle_of_interest**2)
+		denominator = 2.0*leg_1*leg_2
+		angle_in_rads = Math.acos(numerator / denominator)
+		radians_to_degrees(angle_in_rads)
 	end
 
 	def radians_to_degrees(rads)
