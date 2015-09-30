@@ -3,7 +3,9 @@ class Triangle
   attr_reader :side1, :side2, :side3
 
   def initialize(side1, side2, side3)
-    @side1, @side2, @side3 = side1, side2, side3
+    @side1 = side1
+    @side2 = side2
+    @side3 = side3
   end
 
   def recite_facts
@@ -12,40 +14,42 @@ class Triangle
   end
 
   def calculate_angles(a, b, c)
-    angleA = calculate_single_angle(b, c, a)
-    angleB = calculate_single_angle(c, a, b)
-    angleC = calculate_single_angle(a, b, c)
+    angle_a = calculate_single_angle(b, c, a)
+    angle_b = calculate_single_angle(c, a, b)
+    angle_c = calculate_single_angle(a, b, c)
 
-    [angleA, angleB, angleC]
+    [angle_a, angle_b, angle_c]
   end
   
   private
-  def equilateral
+  def equilateral?
     side1 == side2 && side2 == side3
   end
 
-  def isosceles
+  def isosceles?
     [side1,side2,side3].uniq.length == 2
   end
 
-  def scalene
-    (equilateral || isosceles) ? false : true
+  def scalene?
+    !(equilateral? || isosceles?)
   end
 
   def side_length_sentence
-    if equilateral
+    if equilateral?
       'This triangle is equilateral!'
-    elsif isosceles
+    elsif isosceles?
       'This triangle is isosceles! Also, that word is hard to type.'
-    elsif scalene
+    elsif scalene?
       'This triangle is scalene and mathematically boring.'
     end
   end
 
-  def angle_sentences
-    angles = calculate_angles(side1,side2,side3)
+  def right?
+    calculate_angles.include?(90)
+  end
 
-    if angles.include? 90
+  def angle_sentences
+    if right?
       right = "This triangle is also a right triangle!\n" 
     else
       right = "\n"
