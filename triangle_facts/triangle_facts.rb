@@ -20,14 +20,15 @@ class Triangle
 
     [angle_a, angle_b, angle_c]
   end
-  
+
   private
+
   def equilateral?
     side1 == side2 && side2 == side3
   end
 
   def isosceles?
-    [side1,side2,side3].uniq.length == 2
+    [side1, side2, side3].uniq.length == 2
   end
 
   def scalene?
@@ -50,7 +51,7 @@ class Triangle
 
   def angle_sentences
     if right?
-      right = "This triangle is also a right triangle!\n" 
+      right = "This triangle is also a right triangle!\n"
     else
       right = "\n"
     end
@@ -61,22 +62,21 @@ class Triangle
   # solving for C in a**2 + b**2 - 2abcosC = c**2
   def calculate_single_angle(leg_1, leg_2, opposite_from_angle_of_interest)
     numerator = (leg_1**2 + leg_2**2 - opposite_from_angle_of_interest**2)
-    denominator = 2.0*leg_1*leg_2
+    denominator = 2.0 * leg_1 * leg_2
     angle_in_rads = Math.acos(numerator / denominator)
     radians_to_degrees(angle_in_rads)
   end
 
   def radians_to_degrees(rads)
-    return (rads * 180 / Math::PI).round
+    (rads * 180 / Math::PI).round
   end
 end
 
-
 triangles = [
-  [5,5,5],
-  [5,12,13],
+  [5, 5, 5],
+  [5, 12, 13],
 ]
-triangles.each { |sides|
+triangles.each do |sides|
   tri = Triangle.new(*sides)
   tri.recite_facts
-}
+end
