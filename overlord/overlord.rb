@@ -30,7 +30,7 @@ end
 
 get '/bomb/show' do
   @bomb = BOMB
-  erb :"show"
+  erb :show
 end
 
 # we can shove stuff into the session cookie YAY!
