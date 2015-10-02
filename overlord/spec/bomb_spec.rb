@@ -4,7 +4,7 @@ describe Bomb do
   let(:activation_code) { "1234" }
   let(:deactivation_code) { "0000" }
   let(:bad_code) { "bad_code" }
-  let (:bomb) { Bomb.new(activation_code, deactivation_code)}
+  let(:bomb) { Bomb.new(activation_code, deactivation_code) }
   subject(:bomb) { described_class.new(activation_code, deactivation_code) }
 
   describe "#new" do
