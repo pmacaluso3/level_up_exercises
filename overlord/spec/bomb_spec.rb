@@ -4,6 +4,7 @@ describe Bomb do
   let(:activation_code) { "1234" }
   let(:deactivation_code) { "0000" }
   let(:bad_code) { "bad_code" }
+  let (:bomb) { Bomb.new(activation_code, deactivation_code)}
   subject(:bomb) { described_class.new(activation_code, deactivation_code) }
 
   describe "#new" do
@@ -41,8 +42,10 @@ describe Bomb do
 
       context "when entering the activation code" do
         let(:code) { activation_code }
-
-        it { is_expected.to be_active }
+        it 'should be active' do
+          bomb.enter_code(code)
+          expect(bomb).to be_active
+        end
       end
 
       context "when entering the deactivation code" do

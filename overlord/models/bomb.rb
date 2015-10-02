@@ -1,4 +1,4 @@
-require_relative "wire_bundle"
+# require_relative "wire_bundle"
 
 class Bomb
   attr_accessor :timer, :wires
@@ -6,10 +6,10 @@ class Bomb
 
   def initialize(activation_code, deactivation_code, max_failed_deactivations = 3)
     @state = :inactive
-    @activation_code = activation_code.to_s
-    @deactivation_code = deactivation_code.to_s
+    @activation_code = activation_code
+    @deactivation_code = deactivation_code
     @max_failed_deactivations = max_failed_deactivations
-    @wires = WireBundle.new(0, 0)
+    # @wires = WireBundle.new(0, 0)
   end
 
   def active?
