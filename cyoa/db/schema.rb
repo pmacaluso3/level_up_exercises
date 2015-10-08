@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(version: 20151008150940) do
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "quotes", force: :cascade do |t|
@@ -27,9 +30,17 @@ ActiveRecord::Schema.define(version: 20151008150940) do
   end
 
   create_table "quotes_rounds", force: :cascade do |t|
+    t.integer  "quotes_id"
+    t.integer  "round_id"
+    t.boolean  "correct"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "rounds", force: :cascade do |t|
+    t.integer  "game_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|

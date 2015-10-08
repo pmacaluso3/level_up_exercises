@@ -3,7 +3,7 @@ class Round < ActiveRecord::Base
 	has_many :quotes_rounds
 	has_many :quotes, through: :quotes_rounds
 
-	def correct?
-		self.correct
+	def initialize
+		
 	end
 end
