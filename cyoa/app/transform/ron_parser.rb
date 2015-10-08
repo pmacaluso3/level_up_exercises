@@ -1,6 +1,6 @@
 require 'csv'
 
-class RonTransformer
+class RonParser
 	attr_reader :filename
 	attr_accessor :csv_data
 
