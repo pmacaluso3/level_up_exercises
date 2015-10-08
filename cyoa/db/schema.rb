@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20151008150940) do
   end
 
   create_table "quotes_rounds", force: :cascade do |t|
-    t.integer  "quotes_id"
+    t.integer  "quote_id"
     t.integer  "round_id"
     t.boolean  "correct"
     t.datetime "created_at"

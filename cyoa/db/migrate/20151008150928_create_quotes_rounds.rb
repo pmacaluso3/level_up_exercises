@@ -1,7 +1,7 @@
 class CreateQuotesRounds < ActiveRecord::Migration
   def change
     create_table :quotes_rounds do |t|
-    	t.references :quotes
+    	t.references :quote
     	t.references :round
     	t.boolean :correct
 
