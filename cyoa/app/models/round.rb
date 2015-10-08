@@ -3,7 +3,9 @@ class Round < ActiveRecord::Base
 	has_many :quotes_rounds
 	has_many :quotes, through: :quotes_rounds
 
-	def initialize
-		
-	end
+
+  def grab_quotes
+    quotes << Quote.where(ron_said_it: true).sample
+    quotes << Quote.where(ron_said_it: false).sample
+  end
 end
