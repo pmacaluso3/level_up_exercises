@@ -1,0 +1,13 @@
+<h1>
+  This bomb is <%= @bomb.state %> 
+</h1>
+
+<% if @bomb.state != :exploded %> 
+  <h3>
+    Try a code. What's the worst that could happen?
+  </h3>
+  <form action="/code" method="POST">
+    <input type="text" name="code"/>
+    <input type="submit" value="Enter Code" />
+  </form>
+<% end %>
