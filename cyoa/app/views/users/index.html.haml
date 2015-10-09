@@ -2,13 +2,14 @@
   .errors= @errors
 
 %h1 Leaderboard
-- @users.each do |user|
-  .user= user.username
+- @users.each_with_index do |user, i|
+  %p= "#{user.username} #{@hi_score_games[i].total_score}"
 
 - if logged_in?
-  ="WELCOME #{@current_user.username}. TRY NOT TO SUCK TODAY"
+  ="WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY"
   = form_for :game, url: "/games" do |f|
     = f.submit value: "ENTER THE RON THUNDERDORM!"
+  = button_to("Logout", "/logout", {method: :delete})
 
 
 - else

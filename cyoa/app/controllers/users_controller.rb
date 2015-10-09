@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	def index
-		@users = User.all
+		@hi_score_games = Game.high_scores
+		@users = @hi_score_games.map { |game| game.user }
 	end
 
 	def login
@@ -15,9 +16,15 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def logout
+		session.destroy
+		redirect_to '/'
+	end
+
 	def create
 		@user = User.new(user_params)
 		if @user.save
+			session[:user_id] = @user.id
 			redirect_to '/'
 		else
 			@error = "you are going to hell"

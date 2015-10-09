@@ -12,9 +12,7 @@ class RoundsController < ApplicationController
   def update
     answer = params[:round][:correct]
     @current_round = Round.find(params[:id])
-    if answer == "true"
-      @current_round.update_attributes(correct: true)
-    end
+    @current_round.update_attributes(correct: true) if answer == "true"
     @current_round.update_attributes(complete: true)
     redirect_to "/rounds/show"
   end
