@@ -6,6 +6,7 @@
   .user= user.username
 
 - if logged_in?
+  ="WELCOME #{@current_user.username}. TRY NOT TO SUCK TODAY"
   = form_for :game, url: "/games" do |f|
     = f.submit value: "ENTER THE RON THUNDERDORM!"
 

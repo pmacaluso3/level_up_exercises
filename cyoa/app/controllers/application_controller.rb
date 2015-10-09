@@ -6,4 +6,15 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user = User.find(session[:user_id])
   end
+
+  def calculate_results
+    counter = 0
+    @current_game.rounds.each do |round|
+      if round.correct == true
+        counter += 1
+      end
+    end
+    counter
+  end
+
 end
