@@ -6,7 +6,9 @@
   .user= user.username
 
 - if logged_in?
-  %a.new_game{href: '/games/new'} New game!
+  = form_for :game, url: "/games" do |f|
+    = f.submit value: "ENTER THE RON THUNDERDORM!"
+
 
 - else
   = form_for :user, url: "/login" do |f|

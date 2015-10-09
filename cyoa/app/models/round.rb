@@ -8,4 +8,7 @@ class Round < ActiveRecord::Base
     quotes << Quote.where(ron_said_it: true).sample
     quotes << Quote.where(ron_said_it: false).sample
   end
+
+
+
 end
