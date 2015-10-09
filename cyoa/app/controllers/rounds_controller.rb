@@ -1,10 +1,10 @@
 class RoundsController < ApplicationController
 
   def show
-    game = current_user.games.sort_by { |game| game.created_at }
+    game = current_user.games.sort_by(&:created_at)
     @current_game = game.last
     @current_question = @current_game.give_uncompleted_round
-    if @current_question == nil
+    if @current_question.nil?
       redirect_to "/games/#{@current_game.id}/results"
     end
   end

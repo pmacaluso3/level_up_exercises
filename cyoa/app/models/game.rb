@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
     10.times do
       r = Round.new
       r.grab_quotes
-      self.rounds << r
+      rounds << r
     end
   end
 
@@ -15,12 +15,11 @@ class Game < ActiveRecord::Base
   end
 
   def self.high_scores
-    Game.all.sort_by { |game| game.total_score }.reverse
+    Game.all.sort_by(&:total_score).reverse
   end
 
   def total_score
-    rounds.to_a.count { |round| round.correct }
+    rounds.to_a.count(&:correct)
   end
-
 
 end

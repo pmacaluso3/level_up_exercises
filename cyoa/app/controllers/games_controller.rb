@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
 
-	def create
+  def create
 		@game = Game.create
     @game.create_rounds
     current_user.games << @game
@@ -12,6 +12,4 @@ class GamesController < ApplicationController
     @results = @current_game.total_score
   end
 
-
 end
-

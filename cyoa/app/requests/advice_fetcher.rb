@@ -16,4 +16,5 @@ class AdviceFetcher
 	def make_request
 		HTTParty.get(ADVICE_URL_BASE + url_extension).parsed_response
 	end
+
 end
