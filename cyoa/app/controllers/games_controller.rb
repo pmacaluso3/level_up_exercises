@@ -9,7 +9,7 @@ class GamesController < ApplicationController
 
   def results
     @current_game = Game.find(params[:game_id])
-    @results = calculate_results
+    @results = @current_game.total_score
   end
 
 
