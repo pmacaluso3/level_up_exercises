@@ -11,9 +11,9 @@ class Game < ActiveRecord::Base
   end
 
   def give_uncompleted_round
-    uncompleted = rounds.select {|round| !round.complete}
-    uncompleted[0]
+    rounds.uncompleted.first
   end
+
 
 
 end

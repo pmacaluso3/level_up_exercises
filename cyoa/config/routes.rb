@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :create]
   post '/login' => 'users#login'
   post '/games' => 'games#create'
-  resources :rounds, only: [:show]
+  get '/games/:game_id/results' => 'games#results'
+  resources :rounds, only: [:show, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

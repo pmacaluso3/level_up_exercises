@@ -7,7 +7,10 @@ class GamesController < ApplicationController
     redirect_to "/rounds/show"
 	end
 
-
+  def results
+    @current_game = Game.find(params[:game_id])
+    @results = calculate_results
+  end
 
 
 end

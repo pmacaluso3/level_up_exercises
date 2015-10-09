@@ -1,3 +1,8 @@
 
-- @current_question.quotes.each do |quote|
-    %p=quote.content
+- @current_question.quotes.shuffle.each do |quote|
+  %p=quote.content
+  =form_for @current_question do |f|
+    =f.hidden_field :correct, value: quote.ron_said_it
+    =f.submit value: "Ron Said This"
+
+
