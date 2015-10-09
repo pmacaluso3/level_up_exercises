@@ -7,8 +7,9 @@ task advice_import: :environment do
 		if quote
 			quote.save
 		elsif !([22, 48, 67].include?(counter))
-			break				
+			break
 		end
-		counter += 1	
+		counter += 1
 	end
+
 end

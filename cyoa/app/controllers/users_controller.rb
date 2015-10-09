@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def index
 		@hi_score_games = Game.high_scores
-		@users = @hi_score_games.map { |game| game.user }
+		@users = @hi_score_games.map(&:user)
 	end
 
 	def login
@@ -33,6 +33,7 @@ class UsersController < ApplicationController
 	end
 
 	private
+
 	def login_params
 		params.require(:user).permit(:username, :password)
 	end
@@ -41,4 +42,5 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:username, :password)
 	end
+
 end

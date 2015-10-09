@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe RonParser do
-	let(:ron_parser) {described_class.new}
+	let(:ron_parser) { described_class.new }
 
 	it 'has an array of strings' do
 		expect(ron_parser.csv_data).to be_a(Array)

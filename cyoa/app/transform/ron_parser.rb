@@ -25,4 +25,5 @@ class	RonParser
 			make_quote(string).save
 		end
 	end
+
 end
