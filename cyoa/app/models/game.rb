@@ -14,6 +14,7 @@ class Game < ActiveRecord::Base
   def create_rounds
     10.times do |i|
       r = Round.new
+      p true_quotes
       r.quotes << true_quotes[i-1]
       r.quotes << false_quotes[i-1]
       rounds << r

@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   def create
     @game = Game.create
+    @game.find_unique_quotes
     @game.create_rounds
     current_user.games << @game
     redirect_to "/rounds/show"
