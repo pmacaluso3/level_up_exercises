@@ -1,12 +1,9 @@
 class RoundsController < ApplicationController
-
   def show
     game = current_user.games.sort_by(&:created_at)
     @current_game = game.last
     @current_question = @current_game.give_uncompleted_round
-    if @current_question.nil?
-      redirect_to "/games/#{@current_game.id}/results"
-    end
+    redirect_to "/games/#{@current_game.id}/results" if @current_question.nil?
   end
 
   def update
@@ -16,5 +13,4 @@ class RoundsController < ApplicationController
     @current_round.update_attributes(complete: true)
     redirect_to "/rounds/show"
   end
-
 end

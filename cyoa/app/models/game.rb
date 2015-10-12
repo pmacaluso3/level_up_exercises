@@ -1,6 +1,6 @@
 class Game < ActiveRecord::Base
-	belongs_to :user
-	has_many :rounds
+  belongs_to :user
+  has_many :rounds
 
   def create_rounds
     10.times do
@@ -21,5 +21,4 @@ class Game < ActiveRecord::Base
   def total_score
     rounds.to_a.count(&:correct)
   end
-
 end
