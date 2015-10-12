@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'json'
 
 describe AdviceFetcher do
   response = described_class.new.make_request
@@ -11,13 +12,8 @@ describe AdviceFetcher do
     expect(response).not_to be(nil)
   end
 
-  it 'response is in the expected format' do
-    expect(response =~ /slip/).to be_truthy
-    expect(response =~ /advice/).to be_truthy
-  end
-
   it 'gets a specific slip when given a specific slip_id' do
     response_1 = described_class.new(1).make_request
-    expect(response_1).to eq("{\"slip\": {\"advice\":\"Remember that spiders are more afraid of you, than you are of them.\"}}")
+    expect(JSON.parse(response_1)).to be_a(Hash)
   end
 end

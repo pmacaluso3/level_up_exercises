@@ -2,8 +2,10 @@
   .errors= @errors
 
 %h1 Leaderboard
-- @users.each_with_index do |user, i|
-  %p= "#{user.username} #{@hi_score_games[i].total_score}"
+- if @users && @users.any?
+  - @users.each_with_index do |user, i|
+    %p= "#{user.username} #{@hi_score_games[i].score}"
+
 
 - if logged_in?
   ="WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY"

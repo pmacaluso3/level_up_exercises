@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @hi_score_games = Game.high_scores
+    @hi_score_games = Game.includes(:user).order(score: :desc)
     @users = @hi_score_games.map(&:user)
   end
 

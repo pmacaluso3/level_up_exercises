@@ -4,6 +4,11 @@ class Game < ActiveRecord::Base
 
   attr_accessor :true_quotes, :false_quotes
 
+  def update_score
+    self.score = total_score
+    self.save
+  end
+
   def find_unique_quotes
     true_ids_array = Quote.where(ron_said_it: true).pluck(:id).sample(10)
     false_ids_array = Quote.where(ron_said_it: false).pluck(:id).sample(10)
@@ -13,8 +18,8 @@ class Game < ActiveRecord::Base
 
   def create_rounds
     10.times do |i|
-      r = Round.new
-      p true_quotes
+      r = Round.create
+      p r.quotes
       r.quotes << true_quotes[i-1]
       r.quotes << false_quotes[i-1]
       rounds << r
@@ -25,9 +30,7 @@ class Game < ActiveRecord::Base
     rounds.uncompleted.first
   end
 
-  def self.high_scores
-    Game.all.sort_by(&:total_score).reverse
-  end
+  scope :high_scores, -> { order(score: :desc) }
 
   def total_score
     rounds.to_a.count(&:correct)
