@@ -22,7 +22,7 @@ class RonParser
 
   def make_all_quotes!
     csv_data.each do |string|
-      make_quote(string).save
+      make_quote(string).save!
     end
   end
 end

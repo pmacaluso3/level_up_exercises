@@ -9,9 +9,10 @@ class RoundsController < ApplicationController
   end
 
   def update
-    answer = params[:round][:correct]
-    @current_round = Round.find(params[:id])
-    @current_round.correct = true if answer == "true"
+    answer = params[:round][:answer]
+    @current_round = Round.where(id: params[:id]).includes(:quotes)[0]
+    correct_answer = @current_round.quotes.where(ron_said_it: true).first.id
+    @current_round.correct = true if answer.to_i == correct_answer
     @current_round.complete = true
     @current_round.save
     redirect_to "/rounds/show"

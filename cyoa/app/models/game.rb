@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
 
   attr_accessor :true_quotes, :false_quotes
 
+  scope :high_scores, -> { order(score: :desc) }
+
   def update_score
     self.score = total_score
     self.save
@@ -19,9 +21,9 @@ class Game < ActiveRecord::Base
   def create_rounds
     10.times do |i|
       r = Round.create
-      p r.quotes
       r.quotes << true_quotes[i-1]
       r.quotes << false_quotes[i-1]
+      r.correct_answer_id = true_quotes[i-1].id
       rounds << r
     end
   end
@@ -29,8 +31,6 @@ class Game < ActiveRecord::Base
   def give_uncompleted_round
     rounds.uncompleted.first
   end
-
-  scope :high_scores, -> { order(score: :desc) }
 
   def total_score
     rounds.to_a.count(&:correct)
