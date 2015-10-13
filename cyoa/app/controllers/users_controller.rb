@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @hi_score_games = Game.includes(:user).order(score: :desc)
     @users = @hi_score_games.map(&:user)
+    @game_in_progress = game_in_progress?
   end
 
   def login
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to '/'
     else
-      @error = "you are going to hell"
+      @errors = "you are going to hell"
       render "users/index"
     end
   end

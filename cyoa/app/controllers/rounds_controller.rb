@@ -4,7 +4,7 @@ class RoundsController < ApplicationController
     @current_question = @current_game.give_uncompleted_round
     if @current_question.nil?
       @current_game.update_score
-      redirect_to "/games/#{@current_game.id}/results" 
+      redirect_to "/games/#{@current_game.id}/results"
     end
   end
 

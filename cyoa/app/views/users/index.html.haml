@@ -8,9 +8,11 @@
 
 
 - if logged_in?
-  WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY
-  = form_for :game, url: "/games" do |f|
-    = f.submit value: "ENTER THE RON THUNDERDORM!"
+  %p WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY
+  - if @game_in_progress
+    = button_to "RESUME THE THUNDERDORM", "/rounds/show", method: :get
+  - else
+    = button_to "ENTER THE RON THUNDERDORM", games_path
   = button_to("Logout", "/logout", {method: :delete})
 
 
@@ -24,3 +26,4 @@
     = f.text_field :username, placeholder: "Username"
     = f.password_field :password, placeholder: "Password"
     = f.submit value: "Create Account!"
+ 

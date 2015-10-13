@@ -8,7 +8,11 @@ class Game < ActiveRecord::Base
 
   def update_score
     self.score = total_score
-    self.save
+    save
+  end
+
+  def completed?
+    rounds.all?(&:complete)
   end
 
   def find_unique_quotes
@@ -21,9 +25,9 @@ class Game < ActiveRecord::Base
   def create_rounds
     10.times do |i|
       r = Round.create
-      r.quotes << true_quotes[i-1]
-      r.quotes << false_quotes[i-1]
-      r.correct_answer_id = true_quotes[i-1].id
+      r.quotes << true_quotes[i - 1]
+      r.quotes << false_quotes[i - 1]
+      r.correct_answer_id = true_quotes[i - 1].id
       rounds << r
     end
   end
@@ -35,5 +39,4 @@ class Game < ActiveRecord::Base
   def total_score
     rounds.to_a.count(&:correct)
   end
-
 end
