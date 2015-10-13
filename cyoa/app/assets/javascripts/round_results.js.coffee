@@ -1,13 +1,10 @@
 $ ->
-  console.log('Bushes');
 
   $("[data-round-number]").on "submit", (event) ->
-    event.preventDefault();
-    console.log('Trees');
-
-    url = $("[data-round-number]").attr('action');
-    data = $(this).serialize();
-    console.log(url)
+    event.preventDefault()
+    $('[data-submit-answer]').prop('disabled', true)
+    url = $("[data-round-number]").attr('action')
+    data = $(this).serialize()
     $.ajax
       url: url
       method: 'patch'
