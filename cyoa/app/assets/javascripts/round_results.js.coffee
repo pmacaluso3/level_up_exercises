@@ -1,8 +1,17 @@
 $ ->
   console.log('Bushes');
 
-  $("[data-submit-answer]").on "click", (event) ->
+  $("[data-round-number]").on "submit", (event) ->
     event.preventDefault();
     console.log('Trees');
 
-    $("[data-result-holder]").css('background-color', 'red');
+    url = $("[data-round-number]").attr('action');
+    data = $(this).serialize();
+    console.log(url)
+    $.ajax
+      url: url
+      method: 'patch'
+      dataType: 'json'
+      data: data
+      complete: (response) ->
+        $("[data-result-holder]").append(response.responseText)

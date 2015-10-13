@@ -15,6 +15,10 @@ class RoundsController < ApplicationController
     @current_round.correct = true if answer.to_i == correct_answer
     @current_round.complete = true
     @current_round.save
-    redirect_to "/rounds/show"
+    if request.xhr?
+      render partial: 'show_result'
+    else
+      redirect_to "/rounds/show"
+    end
   end
 end
