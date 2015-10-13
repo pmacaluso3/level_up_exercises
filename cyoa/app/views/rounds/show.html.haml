@@ -3,6 +3,10 @@ WHICH ONE DID RON SWANSON SAY?
   %p=quote.content
   =form_for @current_question do |f|
     =f.hidden_field :answer, value: quote.id
-    =f.submit value: "Ron Said This"
+    =f.submit value: "Ron Said This", data: {submit_answer: 'blah'}
 
+
+
+
+%div{data:{result_holder: 'display'}}
 
