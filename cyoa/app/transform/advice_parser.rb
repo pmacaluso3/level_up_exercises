@@ -19,7 +19,7 @@ class AdviceParser
     if content == "error"
       false
     else
-      Question.new(content: content, ron_said_it: false)
+      Question.new(content: content, ron_said_it: false, type: "Quote")
     end
   end
 end
