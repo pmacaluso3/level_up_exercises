@@ -10,7 +10,7 @@
 - if logged_in?
   %p WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY
   - if @game_in_progress
-    = button_to "RESUME THE THUNDERDORM", "/rounds/show", method: :get
+    = button_to "RESUME THE THUNDERDORM", "/rounds", method: :get
   - else
     = button_to "ENTER THE RON THUNDERDORM", "/games?game=ron"
     = button_to "ENTER THE MARVEL CHARACTER THUNDERDORM", "/games?game=marvel_characters"

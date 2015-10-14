@@ -1,16 +1,14 @@
 class GamesController < ApplicationController
   def create
     option = params[:game]
-    if option == "ron"
-
-    elsif option == "marvel_characters"
-
-    end
     @game = Game.create
-    @game.find_unique_questions
-    @game.create_rounds
     current_user.games << @game
-    redirect_to "/rounds/show"
+    if option == "ron"
+      make_ron_game
+    elsif option == "marvel_characters"
+      make_marvel_characters_game
+    end
+    redirect_to "/rounds"
   end
 
   def results
@@ -20,12 +18,13 @@ class GamesController < ApplicationController
 
   private
 
-  def create_ron_game
-    
+  def make_ron_game
+    @game.find_unique_ron_questions
+    @game.create_ron_rounds
   end
 
-  def create_marvel_characters_game
-    
+  def make_marvel_characters_game
+    @game.create_marvel_characters_rounds    
   end
 
 end

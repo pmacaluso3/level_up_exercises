@@ -1,10 +1,8 @@
 WHICH ONE DID RON SWANSON SAY?
-- @current_question.questions.shuffle.each do |question|
+- @questions.shuffle.each do |question|
   %p=question.trivia_piece
   =form_for @current_question, data: {round_number: 'cats'} do |f|
     =f.hidden_field :answer, value: question.id
     =f.submit value: "Ron Said This", data: {submit_answer: 'blah'}
 
-%p
 %div{data:{result_holder: 'display'}}
-
