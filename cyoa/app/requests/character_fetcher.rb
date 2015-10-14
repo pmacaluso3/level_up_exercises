@@ -11,6 +11,6 @@ class CharacterFetcher
   end
 
   def make_request
-    client.characters(offset: offset)
+    client.characters(offset: offset, limit: 100)
   end
 end

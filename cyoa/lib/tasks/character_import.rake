@@ -4,9 +4,9 @@ namespace :import do
     offset_counter = 1
     misses = 0
     loop do
-      response = CharacterFetcher.new(offset_counter*20).make_request
+      response = CharacterFetcher.new(offset_counter*100).make_request
       character_array = CharacterParser.new(response).make_characters
-      puts "Imported #{offset_counter * 20} characters slips..." if offset_counter % 5 == 0
+      puts "Imported #{offset_counter * 100} characters slips..." if offset_counter % 5 == 0
       if character_array
         misses = 0
         Character.transaction { character_array.each(&:save!) }

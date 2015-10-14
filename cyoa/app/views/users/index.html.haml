@@ -12,7 +12,8 @@
   - if @game_in_progress
     = button_to "RESUME THE THUNDERDORM", "/rounds/show", method: :get
   - else
-    = button_to "ENTER THE RON THUNDERDORM", games_path
+    = button_to "ENTER THE RON THUNDERDORM", "/games?game=ron"
+    = button_to "ENTER THE MARVEL CHARACTER THUNDERDORM", "/games?game=marvel_characters"
   = button_to("Logout", "/logout", {method: :delete})
 
 
