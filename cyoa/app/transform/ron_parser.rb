@@ -17,7 +17,7 @@ class RonParser
   end
 
   def make_question(string)
-    Question.new(content: string, ron_said_it: true)
+    Question.new(content: string, ron_said_it: true, type: "Quote")
   end
 
   def make_all_questions!
