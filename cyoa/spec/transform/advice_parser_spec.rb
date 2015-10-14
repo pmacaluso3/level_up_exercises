@@ -17,7 +17,7 @@ describe AdviceParser do
 
     it 'makes a question out of a non-error slip with the correct content' do
       expect(question).to be_a(Question)
-      expect(question.content).to eq("Here is some advice")
+      expect(question.trivia_piece).to eq("Here is some advice")
     end
 
     it 'makes a question that ron did not say' do

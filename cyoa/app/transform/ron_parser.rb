@@ -17,7 +17,7 @@ class RonParser
   end
 
   def make_question(string)
-    Question.new(content: string, name: "ron", type: "Quote")
+    Quote.new(trivia_piece: string, name: "ron")
   end
 
   def make_all_questions!

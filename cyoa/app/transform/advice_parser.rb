@@ -19,7 +19,7 @@ class AdviceParser
     if content == "error"
       false
     else
-      Question.new(content: content, name: "advice", type: "Quote")
+      Quote.new(trivia_piece: content, name: "advice")
     end
   end
 end
