@@ -15,11 +15,11 @@ class AdviceParser
     end
   end
 
-  def make_quote
+  def make_question
     if content == "error"
       false
     else
-      Quote.new(content: content, ron_said_it: false)
+      Question.new(content: content, ron_said_it: false)
     end
   end
 end

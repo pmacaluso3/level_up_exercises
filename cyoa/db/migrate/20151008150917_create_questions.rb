@@ -1,6 +1,6 @@
-class CreateQuotes < ActiveRecord::Migration
+class CreateQuestions < ActiveRecord::Migration
   def change
-    create_table :quotes do |t|
+    create_table :questions do |t|
       t.text :content
       t.boolean :ron_said_it
 

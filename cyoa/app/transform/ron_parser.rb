@@ -5,7 +5,7 @@ class RonParser
   attr_accessor :csv_data
 
   def initialize
-    @filename = "#{Rails.root}/public/ron_quotes.csv"
+    @filename = "#{Rails.root}/public/ron_questions.csv"
     @csv_data = []
     populate_csv_data
   end
@@ -16,13 +16,13 @@ class RonParser
     end
   end
 
-  def make_quote(string)
-    Quote.new(content: string, ron_said_it: true)
+  def make_question(string)
+    Question.new(content: string, ron_said_it: true)
   end
 
-  def make_all_quotes!
+  def make_all_questions!
     csv_data.each do |string|
-      make_quote(string).save!
+      make_question(string).save!
     end
   end
 end
