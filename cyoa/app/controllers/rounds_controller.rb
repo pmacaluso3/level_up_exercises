@@ -11,7 +11,7 @@ class RoundsController < ApplicationController
   def update
     answer = params[:round][:answer]
     @current_round = Round.where(id: params[:id]).includes(:questions)[0]
-    correct_answer = @current_round.questions.where(ron_said_it: true).first.id
+    correct_answer = @current_round.questions.where(name: "ron").first.id
     @current_round.correct = true if answer.to_i == correct_answer
     @current_round.complete = true
     @current_round.save

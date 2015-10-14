@@ -13,7 +13,7 @@ describe RonParser do
   end
 
   it 'makes a question that ron said' do
-    expect(ron_parser.make_question("I'm Ron").ron_said_it).to be true
+    expect(ron_parser.make_question("I'm Ron").name).to be("ron")
   end
 
   it 'writes all new questions to the database' do

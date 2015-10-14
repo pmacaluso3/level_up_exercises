@@ -16,8 +16,8 @@ class Game < ActiveRecord::Base
   end
 
   def find_unique_questions
-    true_ids_array = Question.where(ron_said_it: true).pluck(:id).sample(10)
-    false_ids_array = Question.where(ron_said_it: false).pluck(:id).sample(10)
+    true_ids_array = Question.where(name: "ron").pluck(:id).sample(10)
+    false_ids_array = Question.where(name: "advice").pluck(:id).sample(10)
     self.true_questions = Question.where(id: true_ids_array)
     self.false_questions = Question.where(id: false_ids_array)
   end

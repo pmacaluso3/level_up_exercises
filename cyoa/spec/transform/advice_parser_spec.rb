@@ -21,7 +21,7 @@ describe AdviceParser do
     end
 
     it 'makes a question that ron did not say' do
-      expect(question.ron_said_it).to be false
+      expect(question.name).not_to be("ron")
     end
   end
 end
