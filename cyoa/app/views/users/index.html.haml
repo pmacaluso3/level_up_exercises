@@ -2,9 +2,14 @@
   .errors= @errors
 
 %h1 Leaderboard
-- if @users && @users.any?
-  - @users.each_with_index do |user, i|
-    %p= "#{user.username} #{@hi_score_games[i].score}"
+%h2 Did Ron Say this? Scores
+- if @ron_users && @ron_users.any?
+  - @ron_users.each_with_index do |user, i|
+    %p= "#{user.username} #{@ron_games[i].score}"
+%h2 Marvel Scores
+- if @marvel_users && @marvel_users.any?
+  - @marvel_users.each_with_index do |user, i|
+    %p= "#{user.username} #{@marvel_games[i].score}"
 
 
 - if logged_in?
@@ -27,4 +32,3 @@
     = f.text_field :username, placeholder: "Username"
     = f.password_field :password, placeholder: "Password"
     = f.submit value: "Create Account!"
- 

@@ -40,10 +40,6 @@ class Game < ActiveRecord::Base
     end
   end
 
-  def find_unique_marvel_character_questions
-    
-  end
-
   def create_marvel_characters_rounds
     character_array = Character.all.sample(40)
     10.times do
@@ -52,5 +48,9 @@ class Game < ActiveRecord::Base
       r = Round.create(questions: these_four, correct_answer_id: correct_character.id)
       rounds << r
     end
+  end
+
+  def question_type
+    rounds.first.questions.first.type
   end
 end
