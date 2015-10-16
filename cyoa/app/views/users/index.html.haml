@@ -1,34 +1,43 @@
 - if @errors
   .errors= @errors
 
-%h1 Leaderboard
-%h2 Did Ron Say this? Scores
-- if @ron_users && @ron_users.any?
-  - @ron_users.each_with_index do |user, i|
-    %p= "#{user.username} #{@ron_games[i].score}"
-%h2 Marvel Scores
-- if @marvel_users && @marvel_users.any?
-  - @marvel_users.each_with_index do |user, i|
-    %p= "#{user.username} #{@marvel_games[i].score}"
+
+.row
+  - if logged_in?
+    = button_to("Logout", "/logout", {method: :delete, class: "button"})
+    %p WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY
+
+  %h1 Leaderboard
+  .large-6.columns
+    %h2 Did Ron Say this? Scores
+    - if @ron_users && @ron_users.any?
+      - @ron_users.each_with_index do |user, i|
+        %p= "#{user.username} #{@ron_games[i].score}"
+  .large-6.columns
+    %h2 Marvel Scores
+    - if @marvel_users && @marvel_users.any?
+      - @marvel_users.each_with_index do |user, i|
+        %p= "#{user.username} #{@marvel_games[i].score}"
+
+.row
+  - if logged_in?
+    .large-6.columns
+      - if @game_in_progress
+        = button_to "RESUME THE THUNDERDORM", "/rounds", {method: :get, class: "button"}
+      - else
+        = button_to "ENTER THE RON THUNDERDORM", "/games?game=ron", class: "button"
+    .large-6.columns
+      = button_to "ENTER THE MARVEL CHARACTER THUNDERDORM", "/games?game=marvel_characters", class: "button"
 
 
-- if logged_in?
-  %p WELCOME #{current_user.username}. TRY NOT TO SUCK TODAY
-  - if @game_in_progress
-    = button_to "RESUME THE THUNDERDORM", "/rounds", method: :get
+
   - else
-    = button_to "ENTER THE RON THUNDERDORM", "/games?game=ron"
-    = button_to "ENTER THE MARVEL CHARACTER THUNDERDORM", "/games?game=marvel_characters"
-  = button_to("Logout", "/logout", {method: :delete})
+    = form_for :user, url: "/login" do |f|
+      = f.text_field :username, placeholder: "Username"
+      = f.password_field :password, placeholder: "Password"
+      = f.submit value: "Login!"
 
-
-- else
-  = form_for :user, url: "/login" do |f|
-    = f.text_field :username, placeholder: "Username"
-    = f.password_field :password, placeholder: "Password"
-    = f.submit value: "Login!"
-
-  = form_for :user, url: users_path do |f|
-    = f.text_field :username, placeholder: "Username"
-    = f.password_field :password, placeholder: "Password"
-    = f.submit value: "Create Account!"
+    = form_for :user, url: users_path do |f|
+      = f.text_field :username, placeholder: "Username"
+      = f.password_field :password, placeholder: "Password"
+      = f.submit value: "Create Account!"

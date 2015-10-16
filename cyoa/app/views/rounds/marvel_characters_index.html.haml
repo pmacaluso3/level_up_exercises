@@ -1,9 +1,12 @@
-WHAT IS THE NAME OF THIS CHARACTER?
-%p
-  %img{src: @correct_question.trivia_piece}
-  - @questions.shuffle.each do |question|
-    =form_for @current_round, data: {round_number: 'cats'} do |f|
-      =f.hidden_field :answer, value: question.id
-      =f.submit value: question.name, data: {submit_answer: 'blah'}
+.row
+  .small-6.large-centered.columns
+    %h2 WHAT IS THE NAME OF THIS CHARACTER?
+    %p
+      .center-image
+        %img{src: @correct_question.trivia_piece}
+      - @questions.shuffle.each do |question|
+        =form_for @current_round, data: {round_number: 'cats'} do |f|
+          =f.hidden_field :answer, value: question.id
+          =f.submit value: question.name, data: {submit_answer: 'blah'}, class: "character-button button"
 
-%div{data:{result_holder: 'display'}}
+    %div{data:{result_holder: 'display'}}

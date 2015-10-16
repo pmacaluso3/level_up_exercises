@@ -1,7 +1,9 @@
 - if @current_round.correct?
-  %p= image_tag('ron_approves')
+  .center-image
+    %p= image_tag('ron_approves')
   Ron approves. You are on your way to becoming a Swanson.
 - else
-  %p= image_tag('ron_disapproves')
+  .center-image
+    %p= image_tag('ron_disapproves')
   Ron frowns upon you. You might as well kill yourself now.
 %p= link_to "Move on...", "/rounds"

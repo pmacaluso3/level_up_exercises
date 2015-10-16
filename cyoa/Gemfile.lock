@@ -54,6 +54,9 @@ GEM
     econfig (2.0.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    foundation-rails (5.5.3.2)
+      railties (>= 3.1.0)
+      sass (>= 3.3.0, < 3.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -193,6 +196,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   econfig
+  foundation-rails
   haml-rails
   httparty
   jbuilder (~> 2.0)

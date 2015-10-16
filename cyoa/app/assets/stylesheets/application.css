@@ -12,4 +12,21 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+h1 {
+  text-align: center;
+  font-family: 'Sigmar One', cursive;
+
+}
+h2 {
+  text-align: center;
+}
+.center-image {
+  text-align: center;
+}
+.character-button {
+  width: 100%;
+}

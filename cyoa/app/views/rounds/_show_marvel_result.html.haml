@@ -1,7 +1,9 @@
 - if @current_round.correct?
-  %p= image_tag('deadpool_approves')
+  .center-image
+    %p= image_tag('deadpool_approves')
   Deadpool will share his cake and chimichangas with you.
 - else
-  %p= image_tag('deadpool_disapproves')
+  .center-image
+    %p= image_tag('deadpool_disapproves')
   Get the next one right and MAYYYBBEEE Deadpool won't kill you.
 %p= link_to "Move on...", "/rounds"
