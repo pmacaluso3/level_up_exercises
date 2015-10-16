@@ -19,7 +19,6 @@ class GamesController < ApplicationController
   private
 
   def make_ron_game
-    @game.find_unique_ron_questions
     @game.create_ron_rounds
   end
 

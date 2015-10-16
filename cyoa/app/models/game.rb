@@ -23,19 +23,11 @@ class Game < ActiveRecord::Base
     rounds.to_a.count(&:correct)
   end
 
-  def find_unique_ron_questions
-    true_ids_array = Question.where(name: "ron").pluck(:id).sample(10)
-    false_ids_array = Question.where(name: "advice").pluck(:id).sample(10)
-    self.true_questions = Question.where(id: true_ids_array)
-    self.false_questions = Question.where(id: false_ids_array)
-  end
-
   def create_ron_rounds
+    self.true_questions = Question.where(name: "ron").sample(10)
+    self.false_questions = Question.where(name: "advice").sample(10)
     10.times do |i|
-      r = Round.create
-      r.questions << true_questions[i - 1]
-      r.questions << false_questions[i - 1]
-      r.correct_answer_id = true_questions[i - 1].id
+      r = Round.create(questions: [true_questions[i], false_questions[i]], correct_answer_id: true_questions[i].id)
       rounds << r
     end
   end
@@ -51,6 +43,6 @@ class Game < ActiveRecord::Base
   end
 
   def question_type
-    rounds.first.questions.first.type
+    rounds.first.questions.first.type if rounds.any?
   end
 end

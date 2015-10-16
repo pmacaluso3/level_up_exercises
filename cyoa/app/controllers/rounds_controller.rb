@@ -17,13 +17,13 @@ class RoundsController < ApplicationController
 
   def update
     answer = params[:round][:answer]
-    @current_round = Round.where(id: params[:id]).includes(:questions)[0]
-    correct_answer = @current_round.correct_answer_id
-    @current_round.correct = true if answer.to_i == correct_answer
+    @current_round = Round.where(id: params[:id]).includes(:questions).first
+    correct_answer_id = @current_round.correct_answer_id
+    @current_round.correct = true if answer.to_i == correct_answer_id
     @current_round.complete = true
     @current_round.save
-    @questions = @current_round.questions
     if request.xhr?
+      @questions = @current_round.questions
       if @questions.first.type == "Quote"
         render partial: 'show_ron_result'
       elsif @questions.first.type == "Character"
